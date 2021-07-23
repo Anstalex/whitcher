@@ -149,7 +149,9 @@ const createMain = ({title, main: {genre, rating, description, trailer, slider}}
                 src: item.img,
                 alt: (item.title ? item.title + '' : '') + ' ' + (item.subtitle ? item.subtitle + '' : '')
             })
+
             card.append(cardImage);
+
             if (item.title || item.subtitle) {
                 const cardDescription = getElement('figcaption', ['card-description']);
                 cardDescription.innerHTML = ` 
@@ -162,8 +164,9 @@ const createMain = ({title, main: {genre, rating, description, trailer, slider}}
             return swiperSlide;
         });
         swiperWrapper.append(...slides);
-        swiperBlock.append(swiperWrapper, arrow);
-        container.append(swiperBlock);
+        swiperBlock.append(swiperWrapper);
+        sliderBlock.append(swiperBlock, arrow);
+        container.append(sliderBlock);
 
         new Swiper(swiperBlock, {
             loop: true,
