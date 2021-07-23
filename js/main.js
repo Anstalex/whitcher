@@ -139,7 +139,7 @@ const createMain = ({title, main: {genre, rating, description, trailer, slider}}
         const sliderBlock = getElement('div', ['series']);
         const swiperBlock = getElement('div', ['swiper-container']);
         const swiperWrapper = getElement('div', ['swiper-wrapper']);
-        const arrow = getElement('div', ['arrow']);
+        const arrow = getElement('button', ['arrow']);
 
         const slides = slider.map((item) => {
             let alt = '';
@@ -189,6 +189,12 @@ const createMain = ({title, main: {genre, rating, description, trailer, slider}}
 const movieConstructor = (selector, options) => {
     const app = document.querySelector(selector);
     app.classList.add('body-app');
+
+    app.style.color = options.fontColor || '';
+    app.style.backgroundColor = options.backgroundColor || '';
+    if (options.subColor) {
+        document.documentElement.style.setProperty('--sub-color', options.subColor)
+    }
     app.style.backgroundImage = options.background ?
         `url("${options.background}")` : '';
     document.title = options.title;
@@ -217,6 +223,9 @@ movieConstructor('.app', {
     title: 'Ведьмак',
     background: 'witcher/background.jpg',
     favicon: 'witcher/logo.png',
+    fontColor: '#ffffff',
+    backgroundColor: '#141218',
+    subColor: '#9D2929',
     header: {
         logo: 'witcher/logo.png',
         social: [{
